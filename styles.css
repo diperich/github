@@ -1,0 +1,180 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f6f8fa;
+    color: #24292f;
+}
+
+/* Container layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 80px;
+    background-color: #ffffff;
+    border-right: 1px solid #d0d7de;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.github-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.github-logo svg {
+    fill: #24292f;
+}
+
+/* Navigation styles */
+.sidebar-nav {
+    flex: 1;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    margin: 0 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    min-height: 44px; /* Ensure consistent height for touch targets */
+}
+
+.nav-item:hover {
+    background-color: #f3f4f6;
+}
+
+.nav-item svg {
+    fill: #656d76;
+    transition: fill 0.15s ease;
+}
+
+.nav-item:hover svg {
+    fill: #24292f;
+}
+
+/* Sidebar footer - contains the expand arrow */
+.sidebar-footer {
+    padding: 8px 0 16px 0;
+    border-top: 1px solid #d0d7de;
+    margin-top: auto; /* Push to bottom */
+}
+
+.expand-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    margin: 0 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    min-height: 44px;
+    /* Prevent overlap by ensuring proper spacing */
+    margin-bottom: 4px; /* Add bottom margin to prevent boundary overlap */
+}
+
+.expand-button:hover {
+    background-color: #f3f4f6;
+}
+
+.expand-button svg {
+    fill: #656d76;
+    transition: fill 0.15s ease, transform 0.15s ease;
+}
+
+.expand-button:hover svg {
+    fill: #24292f;
+}
+
+/* Content area */
+.content {
+    flex: 1;
+    margin-left: 80px; /* Account for fixed sidebar */
+    padding: 24px;
+}
+
+.content-header {
+    margin-bottom: 24px;
+}
+
+.content-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #24292f;
+}
+
+.content-body {
+    padding: 16px;
+    background-color: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+    
+    .nav-item {
+        padding: 10px 8px;
+        margin: 0 4px;
+    }
+    
+    .expand-button {
+        padding: 10px 8px;
+        margin: 0 4px 4px 4px;
+    }
+    
+    .content {
+        margin-left: 60px;
+        padding: 16px;
+    }
+}
+
+/* Fix for overlapping issues */
+.sidebar-footer .nav-item {
+    /* Ensure the arrow button doesn't overlap with sidebar boundaries */
+    position: relative;
+    overflow: visible;
+    /* Add specific spacing to prevent overlap */
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Additional spacing fix for the expand button */
+.expand-button {
+    /* Prevent any potential overlap with the sidebar border */
+    box-sizing: border-box;
+    width: calc(100% - 16px); /* Ensure it doesn't touch the edges */
+    max-width: 64px; /* Prevent expansion beyond expected bounds */
+}
